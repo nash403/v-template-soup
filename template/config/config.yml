@@ -1,11 +1,5 @@
-development:
-  apis:
-    someapi: "toto dev"
+development: {}
 
-production:
-  apis:
-    someapi: "toto prod"
+production: {}
 
-testing:
-  apis:
-    someapi: "toto test"
+testing: {}

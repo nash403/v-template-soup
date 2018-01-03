@@ -18,10 +18,7 @@ import i18n from './i18n'
 import '@/sass/main.scss'
 
 {{/sass}}
-Vue.config.productionTip = process.env.NODE_ENV === 'production'
-
-/* eslint-disable */
-console.log('==>', __APP_CONFIG__, __APP_VERSION__)
+Vue.config.productionTip = process.env.NODE_ENV !== 'production'
 
 /* eslint-disable no-new */
 new Vue({
