@@ -73,9 +73,9 @@ This template provide Prettier and StandardJS setup to format / lint javascript 
 
 ## TODO
 
-* edit eslint config to use at least plugin:vue/recommended
-* add prettier to airbnb config also
-* make this template fully compliant with [poi](https://poi.js.org)
+[] edit eslint config to use at least plugin:vue/recommended
+[] add prettier to airbnb config also
+[] make this template fully compliant with [poi](https://poi.js.org)
 
 ## Fork It And Make Your Own
 
