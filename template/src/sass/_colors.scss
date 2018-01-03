@@ -1,0 +1,16 @@
+// Declarative colors
+
+$black: rgb(34, 34, 34) !default;
+
+$red: rgb(229, 0, 80) !default;
+
+$light-grey: rgb(237, 237, 237) !default;
+
+$mid-grey: rgb(153, 153, 153) !default;
+
+$dark-grey: rgb(68, 68, 68) !default;
+
+// Functional colors
+$text-color: $black !default;
+
+$brand-color: $red !default;

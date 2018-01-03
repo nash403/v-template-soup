@@ -1,0 +1,39 @@
+- added config/config.yml
+
+- export package in build/utils
+
+- added __APP_CONFIG__ & __APP_VERSION__ to DefinePlugin in testing, dev & prod webpack configs (with yamljs in package.json)
+
+- added prettier extension in eslintrc.js when lintConfig is standard
+
+- added prettier plugin in eslintrc.js when lintConfig is standard
+
+- added prettierrc
+
+- standard & prettier badge in readme
+
+- added filter in meta.js for prettierrc
+
+- added eslint-config-prettier, eslint-plugin-prettier & prettier to dev deps in package.json
+
+- added confirms in meta.js for vuex, i18n & sass + filters for files
+
+- added assets alias in webpack base config
+
+- added vuex, vue-i18n and sass-loader & node-sass as deps
+
+- added global event bus
+
+- added views for router (landing, error, maintenance & not found) + filter for files in meta.js
+
+- added other app icons
+
+- added PWA support
+    - added manifest
+    - added icons
+    - added sw for dev/prod
+    - added minifier util to load sw for prod
+    - edited prod/dev configs to support PWA (edit HtmlWebpackPlugin options & added SWPrecacheWebpackPlugin)
+    - added sw deps in package.json (sw-precache-webpack-plugin & uglify-es)
+    - added links and meta in index.html
+

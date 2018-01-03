@@ -5,6 +5,7 @@ const utils = require('./utils')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
+const YAML = require('yamljs')
 
 const webpackConfig = merge(baseWebpackConfig, {
   // use inline sourcemap for karma-sourcemap-loader
@@ -21,7 +22,11 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': require('../config/test.env')
+      'process.env': require('../config/test.env'),
+      '__APP_CONFIG__': JSON.stringify(
+        YAML.load(path.resolve(__dirname, '../config/config.yml')).testing
+      ),
+      '__APP_VERSION__': JSON.stringify(utils.package.version)
     })
   ]
 })

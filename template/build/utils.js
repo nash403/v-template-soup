@@ -99,3 +99,5 @@ exports.createNotifierCallback = () => {
     })
   }
 }
+
+exports.package = packageConfig

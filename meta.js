@@ -71,7 +71,7 @@ module.exports = {
       message: 'Pick an ESLint preset',
       choices: [
         {
-          name: 'Standard (https://github.com/standard/standard)',
+          name: 'Standard (https://github.com/standard/standard) with Prettier (https://github.com/prettier/prettier)',
           value: 'standard',
           short: 'Standard',
         },
@@ -86,6 +86,18 @@ module.exports = {
           short: 'none',
         },
       ],
+    },
+    vuex: {
+      type: 'confirm',
+      message: 'Setup vuex'
+    },
+    i18n: {
+      type: 'confirm',
+      message: 'Setup i18n'
+    },
+    sass: {
+      type: 'confirm',
+      message: 'Setup sass'
     },
     unit: {
       type: 'confirm',
@@ -117,6 +129,16 @@ module.exports = {
       type: 'confirm',
       message: 'Setup e2e tests with Nightwatch?',
     },
+    pwa: {
+      type: 'confirm',
+      message: 'Setup app as PWA',
+    },
+    short_name: {
+      when: 'pwa',
+      type: 'string',
+      required: false,
+      message: 'Project short name: fewer than 12 characters to not be truncated on homescreens (default: same as name)'
+    },
     autoInstall: {
       type: 'list',
       message:
@@ -143,6 +165,7 @@ module.exports = {
   filters: {
     '.eslintrc.js': 'lint',
     '.eslintignore': 'lint',
+    '.prettierrc': "lint && lintConfig === 'standard'",
     'config/test.env.js': 'unit || e2e',
     'build/webpack.test.conf.js': "unit && runner === 'karma'",
     'test/unit/**/*': 'unit',
@@ -153,6 +176,14 @@ module.exports = {
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
     'src/router/**/*': 'router',
+    'src/views/**/*': 'router',
+    'src/i18n/**/*': 'i18n',
+    'src/stores/**/*': 'vuex',
+    'src/sass/**/*': 'sass',
+    'build/load-minified.js': 'pwa',
+    'build/service-worker-dev.js': 'pwa',
+    'build/service-worker-prod.js': 'pwa'
+
   },
   complete: function(data, { chalk }) {
     const green = chalk.green

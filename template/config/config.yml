@@ -1,0 +1,11 @@
+development:
+  apis:
+    someapi: "toto dev"
+
+production:
+  apis:
+    someapi: "toto prod"
+
+testing:
+  apis:
+    someapi: "toto test"

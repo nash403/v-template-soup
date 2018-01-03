@@ -1,13 +1,15 @@
 {
-  "name": "vue-cli-template-webpack",
-  "version": "1.2.8",
+  "name": "v-template-soup",
+  "version": "1.0.0",
   "license": "MIT",
-  "description": "A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction.",
+  "description": "A full-featured Webpack setup with hot-reload, lint/format-on-save, unit testing, css extraction, vue-router, vuex, vue-i18n, support for sass & PWA support",
   "scripts": {
+    "start": "rimraf test && vue init . test",
     "docs": "cd docs && gitbook serve",
     "docs:deploy": "bash ./deploy-docs.sh"
   },
   "devDependencies": {
+    "rimraf": "^2.6.2",
     "vue-cli": "^2.8.1"
   }
 }

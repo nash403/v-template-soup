@@ -10,6 +10,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const YAML = require('yamljs')
+{{#pwa}}
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const loadMinified = require('./load-minified')
+{{/pwa}}
 
 const env = {{#if_or unit e2e}}process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -32,7 +37,11 @@ const webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env
+      'process.env': env,
+      '__APP_CONFIG__': JSON.stringify(
+        YAML.load(path.resolve(__dirname, '../config/config.yml'))[process.env.NODE_ENV === 'testing' ? 'testing' : 'production']
+      ),
+      '__APP_VERSION__': JSON.stringify(utils.package.version)
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -48,7 +57,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: utils.assetsPath('css/[name].[contenthash].css'),
       // Setting the following option to `false` will not extract CSS from codesplit chunks.
       // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
-      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`, 
+      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
       // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
       allChunks: true,
     }),
@@ -76,7 +85,10 @@ const webpackConfig = merge(baseWebpackConfig, {
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency'
+      chunksSortMode: 'dependency'{{#pwa}},
+      serviceWorkerLoader: `<script>${loadMinified(path.join(__dirname,
+        './service-worker-prod.js'))}</script>`
+      {{/pwa}}
     }),
     // keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),
@@ -119,7 +131,17 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]){{#pwa}},
+    // service worker caching.
+    // For lines with (*) if you change the build destination, edit those lines too.
+    new SWPrecacheWebpackPlugin({
+      cacheId: '{{ name }}',
+      filename: 'service-worker.js',
+      staticFileGlobs: ['dist/**/*.{js,html,css}'], // (*)
+      minify: true,
+      stripPrefix: 'dist/' // (*)
+    })
+    {{/pwa}}
   ]
 })
 

@@ -1,4 +1,5 @@
 'use strict'
+{{#pwa}}const fs = require('fs'){{/pwa}}
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
@@ -9,6 +10,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const YAML = require('yamljs')
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -46,7 +48,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': require('../config/dev.env')
+      'process.env': require('../config/dev.env'),
+      '__APP_CONFIG__': JSON.stringify(
+        YAML.load(path.resolve(__dirname, '../config/config.yml')).development
+      ),
+      '__APP_VERSION__': JSON.stringify(utils.package.version)
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
@@ -55,7 +61,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true{{#pwa}},
+      serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
+        './service-worker-dev.js'), 'utf-8')}</script>`
+      {{/pwa}}
     }),
     // copy custom static assets
     new CopyWebpackPlugin([

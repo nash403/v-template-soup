@@ -1,12 +1,11 @@
-# vue-webpack-boilerplate
+# v-template-soup
 
-> A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction.
-
-> This template is Vue 2.0 compatible. For Vue 1.x use this command: `vue init webpack#1.0 my-project`
+> A full-featured Webpack setup with hot-reload, lint/format-on-save, unit testing, css extraction, vue-router, vuex, vue-i18n, support for sass & PWA support.
 
 ## Documentation
 
-- [For this template](http://vuejs-templates.github.io/webpack): common questions specific to this template are answered and each part is described in greater detail
+- This template is built on top of the main webpack template & pwa template, so please refer to the [webpack template docs](http://vuejs-templates.github.io/webpack).
+
 - [For Vue 2.0](http://vuejs.org/guide/): general information about how to work with Vue, not specific to this template
 
 ## Usage
@@ -15,19 +14,13 @@ This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). **It
 
 ``` bash
 $ npm install -g vue-cli
-$ vue init webpack my-project
+$ vue init nash403/v-template-soup my-project
 $ cd my-project
 $ npm install
 $ npm run dev
 ```
 
-This will scaffold the project using the `master` branch. If you wish to use the latest version of the webpack template, do the following instead:
-
-``` bash
-$ vue init webpack#develop my-project
-```
-
-:warning: **The develop branch is not considered stable and can contain bugs or not build at all, so use at your own risk.**
+:warning: **This template was built on top of the develop branch of the webpack template which is not considered stable and can contain bugs or not build at all, so use at your own risk.**
 
 The development server will run on port 8080 by default. If that port is already in use on your machine, the next free port will be used.
 
@@ -37,7 +30,7 @@ The development server will run on port 8080 by default. If that port is already
   - Webpack + `vue-loader` for single file Vue components.
   - State preserving hot-reload
   - State preserving compilation error overlay
-  - Lint-on-save with ESLint
+  - Lint-on-save with ESLint + format with Prettier when used with standard config
   - Source maps
 
 - `npm run build`: Production ready build.
@@ -57,7 +50,28 @@ The development server will run on port 8080 by default. If that port is already
     - Selenium and chromedriver dependencies automatically handled.
     - Automatically spawns the Selenium server.
 
-### Fork It And Make Your Own
+## Formatter / Linter
+
+This template provide Prettier and StandardJS setup to format / lint javascript code. Below are the ways to setup this with you favorite editor.
+
+### VS Code
+- Install these vscode plugins :
+
+  - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+  - [EsLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+- Set user parameters :
+``` json
+  // Format a file on save. A formatter must be available, the file must not be auto-saved, and editor must not be shutting down.
+  "editor.formatOnSave": true,
+  // Disable default JavaScript formatter
+  "javascript.format.enable": false,
+  // Prettier
+  "prettier.eslintIntegration": true,
+```
+
+## Fork It And Make Your Own
 
 You can fork this repo to create your own boilerplate, and use it with `vue-cli`:
 
