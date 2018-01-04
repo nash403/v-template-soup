@@ -2,9 +2,10 @@
   "name": "v-template-soup",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "A full-featured Webpack setup with hot-reload, lint/format-on-save, unit testing, css extraction, vue-router, vuex, vue-i18n, support for sass & PWA support",
+  "description":
+    "A full-featured Webpack setup with hot-reload, lint/format-on-save, unit testing, css extraction, vue-router, vuex, vue-i18n, support for sass & PWA support",
   "scripts": {
-    "start": "rimraf test && vue init . test",
+    "start": "rimraf test-project && vue init . test-project",
     "docs": "cd docs && gitbook serve",
     "docs:deploy": "bash ./deploy-docs.sh"
   },

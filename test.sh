@@ -1,8 +1,8 @@
 set -e
 
-yes "" | ./node_modules/.bin/vue init . test
+yes "" | ./node_modules/.bin/vue init . test-project
 
-cd test
+cd test-project
 npm install
 npm run lint
 npm test
