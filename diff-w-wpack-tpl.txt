@@ -37,3 +37,6 @@
     - added sw deps in package.json (sw-precache-webpack-plugin & uglify-es)
     - added links and meta in index.html
 
+- changed test directory from 'test' to 'test-project'
+
+- production tip true & strcit mode to vuex store when in development mode
