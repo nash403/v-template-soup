@@ -12,10 +12,10 @@ $text-font--code: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
   'Monaco', monospace !default;
 
 $breakpoints: (
-    'small': 320px,
-    'medium': 768px,
-    'large': 1024px,
-    'xlarge': 1366px
+    'small': 20em,
+    'medium': 48em,
+    'large': 64em,
+    'xlarge': 85em
   )
   !default;
 
