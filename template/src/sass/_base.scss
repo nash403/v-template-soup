@@ -3,10 +3,19 @@
 // -----------------------------------------------------------------------------
 
 /**
- * Set up a decent box model on the root element
+ * Set up a decent box model on the root element & reset font size to ~10px
  */
-html {
+ html {
   box-sizing: border-box;
+  font-size: $base-font-size;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /**
@@ -26,18 +35,23 @@ html {
  */
 body {
   color: $text-color;
-  font: normal 125% / 1.4 $text-font-stack;
+  font-family: $text-font--primary;
+  font-size: 1.6rem; // ~16px
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  direction: ltr;
 }
 
 /**
  * Basic styles for links
  */
 a {
-  color: $brand-color;
+  color: $link-color;
   text-decoration: none;
+  font: inherit;
 
   @include on-event {
-    color: $text-color;
+    color: inherit;
     text-decoration: underline;
   }
 }

@@ -1,17 +1,26 @@
-$text-font-stack: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+// -----------------------------------------------------------------------------
+// This file contains your variable declarations
+// (Tip: This file is loaded after _colors.scss, you can use color variables)
+// -----------------------------------------------------------------------------
 
-$code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
+$base-font-size: 62.5%;
 
-$max-width: 1180px !default;
+$text-font--primary: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue',
+  'Helvetica', 'Arial', sans-serif !default;
+
+$text-font--code: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+  'Monaco', monospace !default;
 
 $breakpoints: (
-  'small': 320px,
-  'medium': 768px,
-  'large': 1024px,
-) !default;
+    'small': 320px,
+    'medium': 768px,
+    'large': 1024px,
+    'xlarge': 1366px
+  )
+  !default;
 
 /// Relative or absolute URL where all assets are served from
 /// @type String
 /// @example scss - When using a CDN
 ///   $base-url: 'http://cdn.example.com/assets/';
-$base-url: '/assets/' !default;
+$base-url: '~@/assets/' !default;

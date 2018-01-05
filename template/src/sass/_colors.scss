@@ -1,16 +1,21 @@
-// Declarative colors
+// -----------------------------------------------------------------------------
+// Color declarations
+// (naming convention @ http://chir.ag/projects/name-that-color):
+// -----------------------------------------------------------------------------
 
-$black: rgb(34, 34, 34) !default;
+// - brand colors priority:
 
-$red: rgb(229, 0, 80) !default;
+//- brand primary:
 
-$light-grey: rgb(237, 237, 237) !default;
+//- brand secondary:
 
-$mid-grey: rgb(153, 153, 153) !default;
+// - other colors:
+$black: #000000 !default;
+$alizarin-crimson: #e2231a !default;
 
-$dark-grey: rgb(68, 68, 68) !default;
+// -----------------------------------------------------------------------------
+// Color scopes:
+// -----------------------------------------------------------------------------
 
-// Functional colors
 $text-color: $black !default;
-
-$brand-color: $red !default;
+$link-color: $alizarin-crimson !default;
