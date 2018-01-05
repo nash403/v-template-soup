@@ -23,10 +23,12 @@ const webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': require('../config/test.env'),
-      '__APP_CONFIG__': JSON.stringify(
+      STATIC_PATH: JSON.stringify(''), // ?
+      APP_CONFIG: JSON.stringify(
         YAML.load(path.resolve(__dirname, '../config/config.yml')).testing
       ),
-      '__APP_VERSION__': JSON.stringify(utils.package.version)
+      APP_VERSION: JSON.stringify(utils.package.version),
+      APP_NAME: JSON.stringify(utils.package.name)
     })
   ]
 })

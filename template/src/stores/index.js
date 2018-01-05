@@ -15,7 +15,7 @@ const actions = {}
 const modules = {}
 
 // eslint-disable-next-line
-const plugins = __APP_CONFIG__.enableVuexLogger ? [createLogger()] : []
+const plugins = APP_CONFIG.enableVuexLogger ? [createLogger()] : []
 
 export default new Vuex.Store({
   state,

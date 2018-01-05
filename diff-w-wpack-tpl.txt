@@ -2,7 +2,7 @@
 
 - export package in build/utils
 
-- added __APP_CONFIG__ & __APP_VERSION__ to DefinePlugin in testing, dev & prod webpack configs (with yamljs in package.json)
+- added APP_CONFIG, APP_NAME & APP_VERSION to DefinePlugin in testing, dev & prod webpack configs (with yamljs in package.json)
 
 - added prettier extension in eslintrc.js when lintConfig is standard
 

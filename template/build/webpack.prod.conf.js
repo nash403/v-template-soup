@@ -38,10 +38,16 @@ const webpackConfig = merge(baseWebpackConfig, {
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env,
-      '__APP_CONFIG__': JSON.stringify(
-        YAML.load(path.resolve(__dirname, '../config/config.yml'))[process.env.NODE_ENV === 'testing' ? 'testing' : 'production']
+      STATIC_PATH: JSON.stringify(
+        `${config.build.assetsPublicPath}${config.build.assetsSubDirectory}`
       ),
-      '__APP_VERSION__': JSON.stringify(utils.package.version)
+      APP_CONFIG: JSON.stringify(
+        YAML.load(
+          path.resolve(__dirname, '../config/config.yml')
+        )[process.env.NODE_ENV === 'testing' ? 'testing' : 'production']
+      ),
+      APP_VERSION: JSON.stringify(utils.package.version),
+      APP_NAME: JSON.stringify(utils.package.name)
     }),
     new UglifyJsPlugin({
       uglifyOptions: {

@@ -49,10 +49,14 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env'),
-      '__APP_CONFIG__': JSON.stringify(
+      STATIC_PATH: JSON.stringify(
+        `${config.dev.assetsPublicPath}${config.dev.assetsSubDirectory}`
+      ),
+      APP_CONFIG: JSON.stringify(
         YAML.load(path.resolve(__dirname, '../config/config.yml')).development
       ),
-      '__APP_VERSION__': JSON.stringify(utils.package.version)
+      APP_VERSION: JSON.stringify(utils.package.version),
+      APP_NAME: JSON.stringify(utils.package.name)
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
