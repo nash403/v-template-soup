@@ -23,5 +23,6 @@ export default new Vuex.Store({
   mutations,
   actions,
   modules,
-  plugins
+  plugins,
+  strict: process.env.NODE_ENV === 'development'
 })
