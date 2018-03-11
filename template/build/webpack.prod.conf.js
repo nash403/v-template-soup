@@ -10,11 +10,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const YAML = require('yamljs')
 {{#pwa}}
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const loadMinified = require('./load-minified')
 {{/pwa}}
+const stringify = str => JSON.stringify(str)
+const appConfig = require('./load-app-config')('production')
 
 const env = {{#if_or unit e2e}}process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -37,17 +38,14 @@ const webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env,
-      STATIC_PATH: JSON.stringify(
-        `${config.build.assetsPublicPath}${config.build.assetsSubDirectory}`
-      ),
-      APP_CONFIG: JSON.stringify(
-        YAML.load(
-          path.resolve(__dirname, '../config/config.yml')
-        )[process.env.NODE_ENV === 'testing' ? 'testing' : 'production']
-      ),
-      APP_VERSION: JSON.stringify(utils.package.version),
-      APP_NAME: JSON.stringify(utils.package.name)
+      'process.env': Object.assign({}, env, {
+        BASE_URL: stringify(
+          `${config.build.assetsPublicPath}${config.build.assetsSubDirectory}`
+        ),
+        VUE_APP_NAME   : stringify(utils.package.name),
+        VUE_APP_VERSION: stringify(utils.package.version)
+      }),
+      APP_CONFIG: stringify(appConfig)
     }),
     new UglifyJsPlugin({
       uglifyOptions: {

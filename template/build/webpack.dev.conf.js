@@ -10,7 +10,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const YAML = require('yamljs')
+const appConfig = require('./load-app-config')('development')
+const stringify = str => JSON.stringify(str)
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -48,15 +49,14 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': require('../config/dev.env'),
-      STATIC_PATH: JSON.stringify(
-        `${config.dev.assetsPublicPath}${config.dev.assetsSubDirectory}`
-      ),
-      APP_CONFIG: JSON.stringify(
-        YAML.load(path.resolve(__dirname, '../config/config.yml')).development
-      ),
-      APP_VERSION: JSON.stringify(utils.package.version),
-      APP_NAME: JSON.stringify(utils.package.name)
+      'process.env': Object.assign({}, require('../config/dev.env'), {
+        BASE_URL: stringify(
+            `${config.dev.assetsPublicPath}${config.dev.assetsSubDirectory}`
+        ),
+        VUE_APP_NAME   : stringify(utils.package.name),
+        VUE_APP_VERSION: stringify(utils.package.version)
+      }),
+      APP_CONFIG: stringify(appConfig)
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
