@@ -87,6 +87,11 @@ module.exports = {
         },
       ],
     },
+    husky: {
+      type: 'confirm',
+      when: 'lint',
+      message: 'Lint your code in a precommit hook with Huksy (https://github.com/typicode/husky) ?',
+    },
     vuex: {
       type: 'confirm',
       message: 'Setup vuex'

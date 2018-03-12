@@ -22,8 +22,8 @@
     {{#lint}}
     "lint": "eslint --ext .js,.vue src{{#unit}} test/unit/specs{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}",
     "format": "prettier-eslint src/**/*.{js,vue} test/**/*.js --write",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "precommit": "npm run lint",
+    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"{{#husky}},
+    "precommit": "npm run lint",{{/husky}}
     {{/lint}}
     "build": "node build/build.js"
   },
@@ -43,8 +43,8 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
     "prettier": "^1.11.1",
-    "prettier-eslint-cli": "^4.7.1",
-    "husky": "^0.14.3",
+    "prettier-eslint-cli": "^4.7.1"{{#husky}},
+    "husky": "^0.14.3",{{/husky}}
     {{#if_eq lintConfig "standard"}}
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-promise": "^3.4.0",
